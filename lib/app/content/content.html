@@ -1,7 +1,61 @@
 <div v-if="loading">loading...</div>
 <div class="container" v-else>
   <div class="page-header">
-    <p class="lead">{{{ title }}} - <a :href="src">source</a></p>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="lead">{{{ meta['og:title'] || meta.title || title }}}</p>
+      </div>
+    </div>
   </div>
-  <p v-for="paragraph in paragraphs">{{{ paragraph }}}</p>
+  <div class="row">
+    <div class="col-md-6">
+      <p v-for="paragraph in paragraphs">{{{ paragraph }}}</p>
+    </div>
+    <div class="col-md-6">
+      <div class="row" v-if="meta['og:url'] || src">
+        <h4>source</h4>
+        <p><a :href="#">{{ meta['og:url'] || src }}</a></p>
+      </div>
+      <div class="row" v-if="meta['og:site_name']">
+        <h4>site</h4>
+        <p>{{{ meta['og:site_name'] }}}</p>
+      </div>
+      <div class="row" v-if="meta.Section || meta.Subsection">
+        <h4>section</h4>
+        <p>{{{ meta['Section'] }}}<span v-if="meta['Subsection']"> > {{{ meta['Subsection'] }}}<span></p>
+      </div>
+      <div class="row" v-if="meta.author || meta.Author">
+        <h4>author</h4>
+        <p>{{{ meta.author }}}<span v-if="meta.author">, </span>{{{ meta.Author }}}</p>
+        <p v-if="meta.owner">{{{ meta.owner }}}</p>
+      </div>
+      <div class="row">
+        <h4>date</h4>
+        <p>{{{ meta['og:updated_time'] || meta['DisplayDate'] }}}</p>
+      </div>
+      <div class="row" v-if="meta['og:description'] || meta.description">
+        <h4>description</h4>
+        <p>{{{ meta['og:description'] || meta.description }}}</p>
+      </div>
+      <div class="row" v-if="meta.abstract">
+        <h4>abstract</h4>
+        <p>{{{ meta.abstract }}}</p>
+      </div>
+      <div class="row" v-if="meta['og:image']">
+        <h4>image</h4>
+        <img :src="meta['og:image']" class="col-md-6">
+      </div>
+      <div class="row" v-if="meta.keywords">
+        <h4>keywords</h4>
+        <p>{{{ meta.keywords }}}</p>
+      </div>
+      <div class="row" v-if="meta['og:locale']">
+        <h4>locale</h4>
+        <p>{{{ meta['og:locale'] }}}</p>
+      </div>
+      <!--<ul>
+        <li v-for="m in meta.all">{{{ m.name }}} : {{{ m.content }}}</li>
+      </ul>-->
+    </div>
+  <div>
 </div>
