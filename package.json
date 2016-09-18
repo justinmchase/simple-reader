@@ -1,0 +1,44 @@
+{
+  "name": "raw-reader",
+  "version": "1.0.0",
+  "description": "Reads sites as plain text, stripping out all ads and external resources.",
+  "author": "justinmchase",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/justinmchase/raw-reader.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "app": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    }
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "babel-core": "^6.14.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "bootstrap": "^3.3.7",
+    "core-js": "^2.4.1",
+    "jquery": "^3.1.0",
+    "minimist": "^1.2.0",
+    "request": "^2.74.0",
+    "uuid": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "electron-prebuilt": "^1.4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "require-dir": "^0.3.0",
+    "standard": "^8.0.0"
+  }
+}

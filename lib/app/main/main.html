@@ -1,0 +1,15 @@
+<div>
+  <ul class="nav nav-tabs">
+    <li role="presentation" v-for="item in items" :class="{ active: item.active }">
+      <a data-toggle="tab" :href="'#' + item.id">{{ item.title }}</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div
+      v-for="item in items"
+      :class="{ 'tab-pane': true, active: item.active }"
+      :id="item.id">
+        <content :src="item.url"></content>
+    </div>
+  </div>
+</div>

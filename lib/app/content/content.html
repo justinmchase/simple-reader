@@ -1,0 +1,7 @@
+<div v-if="loading">loading...</div>
+<div class="container" v-else>
+  <div class="page-header">
+    <p class="lead">{{{ title }}} - <a :href="src">source</a></p>
+  </div>
+  <p v-for="paragraph in paragraphs">{{{ paragraph }}}</p>
+</div>
