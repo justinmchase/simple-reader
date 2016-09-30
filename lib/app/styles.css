@@ -8,3 +8,19 @@ webview.secret {
   width: 0px;
   height: 0px;
 }
+
+.tab-header {
+  max-width: 150px;
+  font-size: 12px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-tabs > li .close {
+  margin: -2px 0 0 10px;
+  font-size: 18px;
+}

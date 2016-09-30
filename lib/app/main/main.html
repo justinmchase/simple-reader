@@ -1,7 +1,10 @@
 <div>
   <ul class="nav nav-tabs">
-    <li role="presentation" v-for="item in items" :class="{ active: item.active }">
-      <a data-toggle="tab" :href="'#' + item.id">{{ item.title }}</a>
+    <li role="presentation" v-for="item in items" :class="{ active: item.active }" class="tab-header">
+      <a data-toggle="tab" :href="'#' + item.id" class="ellipsis">
+        <button type="button" class="close pull-right" @click="close(item)"><span aria-hidden="true">&times;</span></button>
+        {{ item.title }}
+      </a>
     </li>
   </ul>
   <div class="tab-content">
@@ -9,7 +12,9 @@
       v-for="item in items"
       :class="{ 'tab-pane': true, active: item.active }"
       :id="item.id">
-        <content :src="item.url"></content>
+        <div class="tab-pane">
+          <content :item="item"></content>
+        </div>
     </div>
   </div>
 </div>

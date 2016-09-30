@@ -1,5 +1,4 @@
 <div class="container" v-if="!isReady">
-  <webview id="actual" :src="src" class="secret" preload="./content/analyze.js" partition="temp"></webview>
   <div class="page-header">
     <div class="row">
       <div class="col-md-12">
@@ -11,66 +10,48 @@
 <div class="container" v-else>
   <div class="page-header">
     <div class="row">
-      <div class="col-md-12">
-        <p class="lead">{{{ data.title }}}</p>
+      <div class="col-md-6">
+        <p class="lead">{{{ data.softTitle || data.title }}}</p>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <div class="row" v-if="data.summary">
-        <h4>summary</h4>
-        <p>{{ data.summary | json }}</p>
-      </div>
-      <div class="row" v-if="data.paragraphs.length">
-        <h4>full text</h4>
-        <p v-for="p in data.paragraphs">{{{ p }}}</p>
+        <h4 v-if="mode=='summary'">summary | <a href="#" @click="showText()">full text</a></h4>
+        <h4 v-if="mode=='text'"><a href="#" @click="showSummary()">summary</a> | full text</h4>
+        <p v-if="mode=='summary'" track-by="$index" v-for="p in data.summary.split('\n')">{{ p }}</p>
+        <p v-if="mode=='text'" track-by="$index" v-for="p in data.text.split('\n')">{{ p }}</p>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="row" v-if="data.siteName">
-        <h4>site</h4>
-        <p>{{ data.siteName }}</p>
-      </div>
-      <div class="row">
-        <h4>source</h4>
-        <p><a :href="#" @click="openSource()">{{ data.url || src }}</a></p>
-      </div>
-      <div class="row" v-if="data.sections.length">
-        <h4>section</h4>
-        <p>{{ data.sections.join(' > ') }}</p>
-      </div>
-      <div class="row" v-if="data.type">
-        <h4>type</h4>
-        <p>{{ data.type }}</p>
-      </div>
-      <div class="row" v-if="data.authors.length">
-        <h4>author</h4>
-        <p v-for="a in data.authors">{{ a }}</p>
-      </div>
-      <div class="row" v-if="data.date.published">
-        <h4>published</h4>
-        <p>{{ data.date.published }}</p>
-      </div>
-      <div class="row" v-if="data.date.updated">
-        <h4>updated</h4>
-        <p>{{ data.date.updated }}</p>
-      </div>
-      <div class="row" v-if="data.description">
-        <h4>description</h4>
-        <p>{{ data.description }}</p>
-      </div>
-      <div class="row" v-if="data.abstract">
-        <h4>abstract</h4>
-        <p>{{ data.abstract }}</p>
-      </div>
-      <div class="row" v-if="data.image">
-        <h4>image</h4>
-        <img :src="data.image" class="col-md-6">
-      </div>
-      <div class="row" v-if="data.keywords.length">
-        <h4>keywords</h4>
-        <p>{{{ data.keywords.join(', ') }}}</p>
+      <div class="container">
+        <div class="row" v-if="data.image">
+          <img :src="data.image" class="col-md-4">
+        </div>
+        <div class="row" v-if="data.publisher">
+          <h4>publisher</h4>
+          <div class="col-md-4">
+            <img v-if="data.favicon" :src="data.favicon">
+            <a href="#" @click="openSource(data.canonicalLink)">{{ data.publisher }}</a>
+          </div>
+        </div>
+        <div class="row" v-if="data.author.length">
+          <h4>author</h4>
+          <p class="col-md-4">{{ data.author.join(', ') }}</p>
+        </div>
+        <div class="row" v-if="data.tags.length">
+          <h4>keywords</h4>
+          <p class="col-md-4">{{{ data.tags.join(', ') }}}</p>
+        </div>
+        <div class="row" v-if="data.date">
+          <h4>date</h4>
+          <p class="col-md-4">{{{ data.date }}}</p>
+        </div>
+        <div class="row" v-if="data.copyright">
+          <h4>copyright</h4>
+          <p class="ellipsis col-md-4">{{{ data.copyright }}}</p>
+        </div>
       </div>
     </div>
   <div>
