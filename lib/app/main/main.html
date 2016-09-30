@@ -1,9 +1,14 @@
 <div>
-  <ul class="nav nav-tabs">
+  <ul id="tabs" class="nav nav-tabs">
     <li role="presentation" v-for="item in items" :class="{ active: item.active }" class="tab-header">
       <a data-toggle="tab" :href="'#' + item.id" class="ellipsis">
         <button type="button" class="close pull-right" @click="close(item)"><span aria-hidden="true">&times;</span></button>
         {{ item.title }}
+      </a>
+    </li>
+    <li role="presentation" class="tab-header">
+      <a data-toggle="tab" href="#add">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
       </a>
     </li>
   </ul>
@@ -15,6 +20,27 @@
         <div class="tab-pane">
           <content :item="item"></content>
         </div>
+    </div>
+    <div class="tab-pane" id="add">
+      <div class="container">
+        <div class="page-header">
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <p class="lead">Read Page</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control" id="addUrl" placeholder="url" v-model="addUrl">
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-success" @click="read()">Read</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
