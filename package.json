@@ -33,9 +33,11 @@
     "minimist": "^1.2.0",
     "moment": "^2.15.1",
     "node-summary": "^1.1.0",
+    "reddit-oauth": "^1.1.1",
     "request": "^2.74.0",
     "unfluff": "^1.1.0",
-    "uuid": "^2.0.2"
+    "uuid": "^2.0.2",
+    "vue": "^1.0.26"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
