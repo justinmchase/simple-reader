@@ -16,9 +16,8 @@
     <script>
       window.jQuery = require('jquery')
       require('bootstrap')
-      require('babel-core/register')({
-        presets: [ 'es2015' ],
-        plugins: [ 'transform-decorators' ]
+      require('babel-register')({
+        presets: [ 'env' ]
       })
       require('./index')
     </script>
