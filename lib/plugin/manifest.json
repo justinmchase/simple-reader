@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Raw Reader",
-  "description": "Sends articles to be read via raw-reader protocol",
+  "name": "Simple Reader",
+  "description": "Sends articles to be read via reader:// protocol",
   "version": "1.0.0",
   "author": "justin.m.chase",
   "homepage_url": "http://justinmchase.com",
