@@ -2,7 +2,12 @@
   <div class="page-header">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <p class="lead">{{ state }}...</p>
+        <h2>{{ state }}...</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <p v-for="err in errors">{{ err.message }}</p>
       </div>
     </div>
   </div>
@@ -11,14 +16,15 @@
   <div class="page-header">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <h2>{{{ data.softTitle || data.title }}}</h1>
+        <h2>{{{ data.softTitle || data.title }}}</h2>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6">
       <div class="row" v-if="data.summary && mode=='summary'">
-        <h4>summary | <a href="#" @click="showText()">full text</a></h4>
+        <h4 v-if="data.text">summary | <a href="#" @click="showText()">full text</a></h4>
+        <h4 v-if="!data.text">summary</h4>
         <p track-by="$index" v-for="p in data.summary.split('\n\n')">{{ p }}</p>
       </div>
       <div class="row" v-if="data.text && mode=='text'">
@@ -38,11 +44,11 @@
             <a href="#" @click="openSource(data.canonicalLink)">{{ data.publisher }}</a>
           </div>
         </div>
-        <div class="row" v-if="data.author.length">
+        <div class="row" v-if="data.author && data.author.length">
           <h4>author</h4>
           <p class="col-xs-6 col-sm-4 col-md-4">{{ data.author.join(', ') }}</p>
         </div>
-        <div class="row" v-if="data.tags.length">
+        <div class="row" v-if="data.tags && data.tags.length">
           <h4>keywords</h4>
           <p class="col-xs-6 col-sm-4 col-md-4">{{{ data.tags.join(', ') }}}</p>
         </div>
@@ -58,7 +64,7 @@
           <h4>description</h4>
           <p class="col-xs-6 col-sm-4 col-md-4">{{ data.description }}</p>
         </div>
-        <div class="row" v-if="data.stats.length">
+        <div class="row" v-if="data.stats && data.stats.length">
           <h4>stats</h4>
           <ul class="col-xs-6 col-sm-4 col-md-4">
             <li v-for="stat in data.stats">{{{ stat }}}</li>

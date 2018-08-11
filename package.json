@@ -34,7 +34,7 @@
     "popsicle": "^10.0.1",
     "reddit-oauth": "^1.1.1",
     "request": "^2.74.0",
-    "unfluff": "^1.1.0",
+    "unfluff": "^3.0.1",
     "uuid": "^2.0.2",
     "vue": "^1.0.26",
     "wordcount": "^1.1.1"
